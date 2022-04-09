@@ -1,0 +1,16 @@
+.squareUnselected {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.squareSelected {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+    background-color: yellowgreen;
+    text-align: center;
+}
