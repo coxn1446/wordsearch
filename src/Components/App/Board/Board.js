@@ -1,20 +1,24 @@
 import React from 'react';
 import SquareRow from './SquareRow/SquareRow';
+import {useSelector} from "react-redux"
+import {selectSquares} from "../../../Features/boardSlice"
 
-function Board(props){
-    const rows = 15;
-    const squareRows = []
+function Board(){
+    const squares = useSelector(selectSquares);
+
+    const rows = Math.sqrt(squares.length);
+    const squareRows = [];
     for (let row = 0; row < rows; row++) {
         squareRows.push(
         <SquareRow
             key={(row*1000+1000).toString()}
             squareRowsKey={row}
-            words={props.words}
-            wordKeys={props.wordKeys}
         ></SquareRow>,<br></br>)
     }
     return (
-    squareRows
+        <div key={5678}>
+            {squareRows}
+        </div>
     )
   };
 

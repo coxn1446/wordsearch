@@ -4,15 +4,19 @@ import './index.css';
 import App from '../src/Components/App/App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from "react-redux";
-import {configureStore} from "@reduxjs/toolkit"
+import {configureStore} from "@reduxjs/toolkit";
+import { boardReducer } from './Features/boardSlice';
 
-/*const store = configureStore({
+const store = configureStore({
   reducer: {
+    board: boardReducer
   }
-});*/
+});
 
 ReactDOM.render(
-    <App />,
+  <Provider store={store}>
+    <App key={1234} />
+  </Provider>,
   document.getElementById('root')
 );
 

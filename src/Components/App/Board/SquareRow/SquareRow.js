@@ -1,44 +1,23 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Square from "./Square/Square"
+import {useSelector} from "react-redux"
+import {selectSquares} from "../../../../Features/boardSlice"
 
 function SquareRow(props){
-    const columns = 15;
+    const squares = useSelector(selectSquares);
+    const columns = Math.sqrt(squares.length);
     const squareColumns = []
 
-/*    let mouseIsPressed = false;
-    let [squareClassName, setSquareClassName] = useState("squareUnselected") 
-  
-    function handleMouseDown(e){
-      e.preventDefault();
-      mouseIsPressed = true;
-  
-    }
-    function handleMouseUp(e){
-      e.preventDefault();
-      mouseIsPressed = false;
-  
-    }
-    function handleMouseEnter(e){
-      e.preventDefault();
-      if (mouseIsPressed) {
-        setSquareClassName("squareSelected");
-        console.log(`the class is ${squareClassName}`);
-      }
-    }
-
-    */
-
-    for (let column = 0; column < columns; column++) {
+for (let column = 0; column < columns; column++) {
         squareColumns.push(
             <Square
-                key={(column+(props.squareRowsKey*columns)).toString()}
-                squareKey={column+(props.squareRowsKey*columns)}
-                words={props.words}
-                wordKeys={props.wordKeys}
+                key={squares[(column+(props.squareRowsKey*columns))].key}
+                squareKey={squares[column+(props.squareRowsKey*columns)].key}
+                letter={squares[column+(props.squareRowsKey*columns)].letter}
             ></Square>
         )
     }
-   return (squareColumns)
+  return (squareColumns)
 };
 
 export default SquareRow;

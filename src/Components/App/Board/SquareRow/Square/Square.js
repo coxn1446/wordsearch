@@ -1,57 +1,53 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './Square.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectMousePressed, selectSquares} from "../../../../../Features/boardSlice"
 
 function Square(props){
-  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-  let letter = alphabet.charAt([Math.floor(Math.random() * alphabet.length)])
+  const dispatch = useDispatch();
 
-  let wordKeys = props.wordKeys
-  let words = props.words;
-
-  wordKeys.forEach((wordKeyArray, index) => {
-    wordKeyArray.forEach((wordKey, index1) => {
-      if (wordKey=== props.squareKey) {
-        letter = words[index].charAt(index1)
-      }
-    })
-  })
-  
-  let [squareClassName, setSquareClassName] = useState("squareUnselected");
-  let [mouseIsPressed, setMouseIsPressed] = useState(false)
-
-  function handleMouseDown(e){
-    e.preventDefault();
-    setMouseIsPressed(true)
-    setSquareClassName("squareSelected");
-
+  const squares = useSelector(selectSquares);
+  let squareClassName = "squareUnselected";
+  if (squares[props.squareKey].isSelected){
+    squareClassName = "squareSelected"
   }
-  function handleMouseUp(e){
-    e.preventDefault();
-    setMouseIsPressed(false)
 
-  }
+  const mousePress = useSelector(selectMousePressed);
   function handleMouseOver(e){
     e.preventDefault();
-      setSquareClassName("squareSelected");
-      console.log(`the class is ${squareClassName}`);
+    if (mousePress) {
+      dispatch({
+        type: 'board/mouseOver',
+        id: props.squareKey
+      })  
+    } 
   }
 
-  function handleMouseOut(e){
-    e.preventDefault();
-      setSquareClassName("squareUnselected");
-      console.log(`the class is ${squareClassName}`);
+  function handleMouseDown(e){
+      e.preventDefault();
+      dispatch({
+        type: 'board/mouseDown',
+        id: props.squareKey
+      })
+  }
+
+  function handleMouseUp(e){
+      e.preventDefault();
+      dispatch(
+          { type: 'board/mouseUp' }
+      )
   }
 
   return (
     <div
       className={squareClassName}
       id={props.squareKey}
+      key={props.squareKey}
+      onMouseOver={handleMouseOver}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
-      onMouseOver={handleMouseOver}
-      onMouseOut={handleMouseOut}
     >
-      {letter}
+      {props.letter}
     </div>
   );
 }
