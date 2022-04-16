@@ -10,10 +10,17 @@ function Controls(){
         })
       }
 
+    function handleClickCheckAnswers(e){
+    e.preventDefault();
+    dispatch({
+        type: 'board/checkAnswers',
+    })
+    }
+
     return (
         <div>
-            <button onClick={handleClickTryAgain}>Try Again?</button>
-            <button>Check Answers</button>
+            <button onClick={handleClickTryAgain}>Reset</button>
+            <button onClick={handleClickCheckAnswers}>Check Answers</button>
         </div>
     )
   };
