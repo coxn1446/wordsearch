@@ -1,16 +1,137 @@
-.squareUnselected {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 1px solid black;
-    text-align: center;
+@media (min-width: 320px){
+    .squareEasySelected {
+        display: inline-block;
+        border: 1px solid black;
+        background-color:yellowgreen;
+        text-align: center;
+        touch-action: none;
+        height: 25px;
+        width: 25px;
+
+
+    }
+
+    .squareEasyUnselected {
+        display: inline-block;
+        border: 1px solid black;
+        text-align: center;
+        touch-action: none;
+        height: 25px;
+        width: 25px;
+
+    }
+
+    .squareMediumSelected {
+        display: inline-block;
+        border: 1px solid black;
+        background-color:yellowgreen;
+        text-align: center;
+        touch-action: none;
+        height: 22px;
+        width: 6%;
+
+    }
+
+    .squareMediumUnselected {
+        display: inline-block;
+        border: 1px solid black;
+        text-align: center;
+        touch-action: none;
+        height: 22px;
+        width: 6%;
+
+    }
+
 }
 
-.squareSelected {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 1px solid black;
-    background-color: mediumseagreen;
-    text-align: center;
+@media (min-width: 600px){
+    .squareEasySelected {
+        display: inline-block;
+        border: 1px solid black;
+        background-color:yellowgreen;
+        text-align: center;
+        touch-action: none;
+        height: 25px;
+        width: 25px;
+
+
+    }
+
+    .squareEasyUnselected {
+        display: inline-block;
+        border: 1px solid black;
+        text-align: center;
+        touch-action: none;
+        height: 25px;
+        width: 25px;
+
+    }
+
+    .squareMediumSelected {
+        display: inline-block;
+        border: 1px solid black;
+        background-color:yellowgreen;
+        text-align: center;
+        touch-action: none;
+        height: 22px;
+        width: 22px;
+
+    }
+
+    .squareMediumUnselected {
+        display: inline-block;
+        border: 1px solid black;
+        text-align: center;
+        touch-action: none;
+        height: 22px;
+        width: 22px;
+
+    }   
+}
+
+@media (min-width: 1026px) {
+    .squareEasySelected {
+        display: inline-block;
+        border: 1px solid black;
+        background-color:yellowgreen;
+        text-align: center;
+        touch-action: none;
+        height: 25px;
+        width: 25px;
+
+
+    }
+
+    .squareEasyUnselected {
+        display: inline-block;
+        border: 1px solid black;
+        text-align: center;
+        touch-action: none;
+        height: 25px;
+        width: 25px;
+
+    }
+
+    .squareMediumSelected {
+        display: inline-block;
+        border: 1px solid black;
+        background-color:yellowgreen;
+        text-align: center;
+        touch-action: none;
+        height: 22px;
+        width: 22px;
+
+    }
+
+    .squareMediumUnselected {
+        display: inline-block;
+        border: 1px solid black;
+        text-align: center;
+        touch-action: none;
+        height: 22px;
+        width: 22px;
+
+    }
+        
+    
 }

@@ -6,7 +6,7 @@ import Controls from "./Controls/Controls"
 function App() {
 
   return (
-    <div>
+    <div className="app">
       <Instructions key={2345}></Instructions>
       <Board key={3456}></Board>
       <Controls key={4567}></Controls>

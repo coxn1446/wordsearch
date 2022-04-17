@@ -8,7 +8,6 @@ const boardSlice = createSlice({
         words: [],
         easyWordKeys: [],
         mediumWordKeys: [],
-        hardWordKeys: [],
         difficulty: "",
         selectedLetterKeys: [],
         answerKey: []
@@ -32,8 +31,6 @@ const boardSlice = createSlice({
             const possibleEasyStartKeysHorizontal = [0,6,12,18,24,30]
             const possibleMediumStartKeys = [0,6,16,36,47,150,202,81,97,12,28,44,15,62,65,141,113,116,148]
             const possibleMediumStartKeysHorizontal = [0,6,16,36,47,150,202,81,97]
-            const possibleHardStartKeys = [27,53,79,105,275,307,351,500,554,13,63,114,168,340,511,617,293,0,26,52,78,104,11,12,22,159,113,167,174,206,264,335,381,418,347,474]
-            const possibleHardStartKeysHorizontal = [27,53,79,105,275,307,351,500,554,13,63,114,168,340,511,617,293]
 
             if(state.difficulty === "easy") {
                 for (let i = possibleEasyStartKeys.length - 1; i > 0; i--) {
@@ -80,6 +77,12 @@ const boardSlice = createSlice({
                     possibleMediumStartKeys[i] = possibleMediumStartKeys[j];
                     possibleMediumStartKeys[j] = temp;
                 }
+                for (let i = possibleWords.length - 1; i > 0; i--) {
+                    let j = Math.floor(Math.random() * (i + 1));
+                    let temp = possibleWords[i];
+                    possibleWords[i] = possibleWords[j];
+                    possibleWords[j] = temp;
+                }
                 const firstThreeKeys = possibleMediumStartKeys.slice(0,3)
                 firstThreeKeys.forEach((firstThreeKey) => {
                     let tempArray = [];
@@ -97,8 +100,7 @@ const boardSlice = createSlice({
                     state.mediumWordKeys.push(tempArray);
                 })
                 for (let i = 0; i < 3; i++) {
-                    let wordIndex = Math.floor(Math.random()*possibleWords.length)
-                    state.words.push(possibleWords[wordIndex])
+                    state.words.push(possibleWords[i])
                 }
                 state.mediumWordKeys.forEach((mediumWordKeyArray, index) => {
                     mediumWordKeyArray.forEach((mediumWordKey, index1) => {
@@ -108,44 +110,6 @@ const boardSlice = createSlice({
                 state.mediumWordKeys.forEach((mediumWordKeyArray) => {
                     mediumWordKeyArray.forEach((mediumWordKey) => {
                         state.answerKey.push(mediumWordKey)
-                    })
-                })
-            }
-            if(state.difficulty === "hard") {
-                for (let i = possibleHardStartKeys.length - 1; i > 0; i--) {
-                    let j = Math.floor(Math.random() * (i + 1));
-                    let temp = possibleHardStartKeys[i];
-                    possibleHardStartKeys[i] = possibleHardStartKeys[j];
-                    possibleHardStartKeys[j] = temp;
-                }
-                const firstFiveKeys = possibleHardStartKeys.slice(0,5)
-                firstFiveKeys.forEach((firstFiveKey) => {
-                    let tempArray = [];
-                    if (possibleHardStartKeysHorizontal.includes(firstFiveKey)){
-                        for (let i = 0; i < 6; i++){
-                            tempArray.push(firstFiveKey)
-                            firstFiveKey++
-                        }
-                    } else {
-                        for (let i = 0; i < 6; i++){
-                            tempArray.push(firstFiveKey)
-                            firstFiveKey+=25
-                        }
-                    }
-                    state.hardWordKeys.push(tempArray);
-                })
-                for (let i = 0; i < 5; i++) {
-                    let wordIndex = Math.floor(Math.random()*possibleWords.length)
-                    state.words.push(possibleWords[wordIndex])
-                }
-                state.hardWordKeys.forEach((hardWordKeyArray, index) => {
-                    hardWordKeyArray.forEach((hardWordKey, index1) => {
-                        state.squares[hardWordKey].letter = state.words[index].charAt(index1)
-                    })
-                })
-                state.hardWordKeys.forEach((hardWordKeyArray) => {
-                    hardWordKeyArray.forEach((hardWordKey) => {
-                        state.answerKey.push(hardWordKey)
                     })
                 })
             }
@@ -183,15 +147,14 @@ const boardSlice = createSlice({
             state.answerKey = [];
             state.easyWordKeys = [];
             state.mediumWordKeys = [];
-            state.hardWordKeys = [];
             state.words = [];
         },
         checkAnswers: (state) => {
             const keyCheck = (currentValue) => state.answerKey.includes(currentValue)
             if (state.selectedLetterKeys.length === state.answerKey.length && state.selectedLetterKeys.every(keyCheck)){
-                alert("You won!")
+                alert("You fool! Although you were able to find all the words, the time it took for you to find them was time I spent inching ahead of you on the corporate ladder.")
             } else {
-                alert("You lost!")
+                alert("You have failed a children's game. Please DM me on LinkedIn so that I may remove you from my network.")
                 state.squares = [];
                 state.difficulty = "";
                 state.selectedLetterKeys = [];
@@ -199,7 +162,6 @@ const boardSlice = createSlice({
                 state.easyWordKeys = [];
                 state.words = [];
                 state.mediumWordKeys = [];
-                state.hardWordKeys = [];
             }
         }
     }

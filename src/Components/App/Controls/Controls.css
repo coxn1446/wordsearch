@@ -1,0 +1,9 @@
+.controls {
+    display: none;
+
+}
+
+.controlsSelected {
+    width: 100%;
+    text-align: center;
+}

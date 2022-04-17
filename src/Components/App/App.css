@@ -1,0 +1,23 @@
+
+@media (min-width: 320px){
+    .app {
+        width: 100%
+    }
+
+}
+
+@media (min-width: 600px){
+    .app {
+        width: 100%;
+
+    }
+    
+}
+
+@media (min-width: 1026px) {
+    .app {
+        width: 100%;
+
+    }
+    
+}

@@ -1,0 +1,52 @@
+.button {
+    text-align: center;
+    margin: 10px;
+    background-color: seagreen;
+    height: 50px;
+    width: 100px;
+    font-size:large;
+    border-radius: 20px;
+    text-decoration: black;
+    color: black
+
+}
+
+.buttonSelected {
+    text-align: center;
+    text-decoration: black;
+    color: black;
+
+}
+
+.buttons {
+    text-align: center;
+}
+
+.buttonsSelected {
+    text-align: center;
+    display: none
+}
+
+.instructions {
+    display: none;
+    text-align: center;
+}
+
+.instructionsSelected {
+    display:block;
+    text-align: center;
+    width: 250px;
+    margin: auto;
+
+}
+
+.difficultyInstructions {
+    display: block;
+    text-align: center;
+}
+
+.difficultyInstructionsSelected {
+    display:none;
+    text-align: center;
+
+}

@@ -1,8 +1,23 @@
 import React from 'react';
-import {useDispatch} from "react-redux"
+import {useDispatch, useSelector} from "react-redux"
+import {selectDifficulty} from "../../../Features/boardSlice"
+import './Controls.css';
+
 
 function Controls(){
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
+  const difficulty = useSelector(selectDifficulty);
+
+  let controlsClass = "controls"
+
+  if (difficulty !== "") {
+    controlsClass = "controlsSelected"
+  } else if (difficulty === "") {
+    controlsClass = "controls"
+
+  }
+
     function handleClickTryAgain(e){
         e.preventDefault();
         dispatch({
@@ -18,9 +33,15 @@ function Controls(){
     }
 
     return (
-        <div>
-            <button onClick={handleClickTryAgain}>Reset</button>
-            <button onClick={handleClickCheckAnswers}>Check Answers</button>
+        <div className={controlsClass}>
+            <button
+              onClick={handleClickTryAgain}
+              className={"button"}
+            >Reset</button>
+            <button
+              onClick={handleClickCheckAnswers}
+              className={"button"}
+            >Check</button>
         </div>
     )
   };

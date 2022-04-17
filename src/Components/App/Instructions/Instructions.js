@@ -1,12 +1,31 @@
 import React from 'react';
+import './Instructions.css';
 import {useDispatch, useSelector} from "react-redux"
-import {selectSquares, selectWords} from "../../../Features/boardSlice"
+import {selectSquares, selectWords, selectDifficulty} from "../../../Features/boardSlice"
 
 
 function Instructions(){
   const dispatch = useDispatch();
   const squares = useSelector(selectSquares);
-  const words = useSelector(selectWords)
+  const words = useSelector(selectWords);
+  const difficulty = useSelector(selectDifficulty);
+
+  let buttonClass = "button"
+  let buttonsClass = "buttons"
+  let instructionsClass = "instructions"
+  let difficultyInstructionsClass = "difficultyInstructions"
+
+  if (difficulty !== "") {
+    buttonClass = "buttonSelected"
+    instructionsClass = "instructionsSelected"
+    difficultyInstructionsClass = "difficultyInstructionsSelected"
+    buttonsClass = "buttonsSelected"
+  } else if (difficulty === "") {
+    buttonClass = "button"
+    instructionsClass = "instructions"
+    difficultyInstructionsClass = "difficultyInstructions"
+    buttonsClass = "buttons"
+  }
 
   function handleClickEasy(e){
     e.preventDefault();
@@ -46,39 +65,24 @@ function Instructions(){
     }
 }
 
-  function handleClickHard(e){
-    e.preventDefault();
-    if(squares.length === 0){
-      dispatch(
-        {
-          type: "board/difficulty",
-          difficulty: "hard"
-        }
-      )
-      dispatch(
-        { 
-          type: 'board/newBoard',
-          rows: 25,
-          columns: 25
-        }
-      )
-    }
-  }
-
   return(
     <div>
-      <p>Choose your difficulty</p>
-      <button 
-        onClick={handleClickEasy}
-      >Easy</button>
-      <button 
-        onClick={handleClickMedium}
-      >Medium</button>
-      <button 
-        onClick={handleClickHard}
-      >Hard</button>
-      <p>Please find the following words in the grid below:</p>
-      <p>{words.join('  |  ')}</p>
+      <a style={{textAlign:"center"}} href={'https://coxnswebsite.surge.sh/'}><p>Back to my website</p></a>
+      <p className={difficultyInstructionsClass}>Choose your difficulty</p>
+      <div className={buttonsClass}>
+        <button 
+          onClick={handleClickEasy}
+          className = {buttonClass}
+        >Easy</button>
+        <button 
+          onClick={handleClickMedium}
+          className = {buttonClass}
+        >"Hard"</button>
+      </div>
+      <p className={instructionsClass}>Please find the following words in the grid below:</p>
+      <br></br>
+      <p className={instructionsClass}>{words.join('  |  ')}</p>
+      <br></br>
     </div>
   )
 
